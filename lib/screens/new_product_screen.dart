@@ -15,6 +15,12 @@ class NewProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> categories = [
+      'Smoothies',
+      'Soft Drinks',
+      'Water',
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add a Product'),
@@ -90,11 +96,11 @@ class NewProductScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              _buildTextFormField(
-                'Product ID',
-                'id',
-                productController,
-              ),
+              // _buildTextFormField(
+              //   'Product ID',
+              //   'id',
+              //   productController,
+              // ),
               _buildTextFormField(
                 'Product Name',
                 'name',
@@ -105,10 +111,29 @@ class NewProductScreen extends StatelessWidget {
                 'description',
                 productController,
               ),
-              _buildTextFormField(
-                'Product Category',
-                'category',
-                productController,
+              // _buildTextFormField(
+              //   'Product Category',
+              //   'category',
+              //   productController,
+              // ),
+              DropdownButtonFormField(
+                iconSize: 20,
+                decoration: const InputDecoration(
+                  hintText: 'Product Category',
+                ),
+                items: categories.map((category) {
+                  return DropdownMenuItem(
+                    value: category,
+                    child: Text(category),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  productController.newProduct.update(
+                    'category',
+                    (_) => value,
+                    ifAbsent: () => value,
+                  );
+                },
               ),
               const SizedBox(height: 10),
               _buildSlider(
@@ -141,20 +166,23 @@ class NewProductScreen extends StatelessWidget {
                   onPressed: () {
                     database.addProduct(
                       Product(
-                        id: int.parse(productController.newProduct['id']),
+                        id: productController.newProduct['id'],
                         name: productController.newProduct['name'],
                         category: productController.newProduct['category'],
                         description:
                             productController.newProduct['description'],
                         imageUrl: productController.newProduct['imageUrl'],
                         isRecommended:
-                            productController.newProduct['isRecommended'],
-                        isPopular: productController.newProduct['isPopular'],
+                            productController.newProduct['isRecommended'] ??
+                                false,
+                        isPopular:
+                            productController.newProduct['isPopular'] ?? false,
                         price: productController.newProduct['price'],
                         quantity:
                             productController.newProduct['quantity'].toInt(),
                       ),
                     );
+                    Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.black,

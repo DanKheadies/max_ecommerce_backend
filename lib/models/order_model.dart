@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class Order extends Equatable {
-  final int id;
+  final String id;
   final int customerId;
   final List<int> productIds;
   final double deliveryFee;
@@ -29,7 +29,7 @@ class Order extends Equatable {
   });
 
   Order copyWith({
-    int? id,
+    String? id,
     int? customerId,
     List<int>? productIds,
     double? deliveryFee,
@@ -56,7 +56,6 @@ class Order extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'customerId': customerId,
       'productIds': productIds,
       'deliveryFee': deliveryFee,
@@ -74,7 +73,7 @@ class Order extends Equatable {
     DateTime date = stamp.toDate();
 
     return Order(
-      id: snap['id'],
+      id: snap.id,
       customerId: snap['customerId'],
       productIds: List<int>.from(snap['productIds']),
       deliveryFee: snap['deliveryFee'],
@@ -110,7 +109,7 @@ class Order extends Equatable {
 
   static List<Order> orders = [
     Order(
-      id: 1,
+      id: '1',
       customerId: 2345,
       productIds: const [1, 2],
       deliveryFee: 10,
@@ -122,7 +121,7 @@ class Order extends Equatable {
       createdAt: DateTime.now(),
     ),
     Order(
-      id: 2,
+      id: '2',
       customerId: 23,
       productIds: const [1, 2, 3],
       deliveryFee: 10,

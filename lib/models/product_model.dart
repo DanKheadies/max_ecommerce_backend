@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
 class Product extends Equatable {
-  final int id;
+  final String? id;
   final String name;
   final String category;
   final String description;
@@ -16,7 +16,7 @@ class Product extends Equatable {
   int quantity;
 
   Product({
-    required this.id,
+    this.id,
     required this.name,
     required this.category,
     required this.description,
@@ -28,7 +28,7 @@ class Product extends Equatable {
   });
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         id,
         name,
         category,
@@ -40,23 +40,8 @@ class Product extends Equatable {
         quantity,
       ];
 
-  // @override
-  // List<Object> get props {
-  //   return [
-  //     id,
-  //     name,
-  //     category,
-  //     description,
-  //     imageUrl,
-  //     isRecommended,
-  //     isPopular,
-  //     price,
-  //     quantity,
-  //   ];
-  // }
-
   Product copyWith({
-    int? id,
+    String? id,
     String? name,
     String? category,
     String? description,
@@ -81,7 +66,6 @@ class Product extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'name': name,
       'category': category,
       'description': description,
@@ -95,7 +79,7 @@ class Product extends Equatable {
 
   factory Product.fromSnapshot(DocumentSnapshot snap) {
     return Product(
-      id: snap['id'],
+      id: snap.id,
       name: snap['name'],
       category: snap['category'],
       description: snap['description'],
@@ -109,15 +93,12 @@ class Product extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  // factory Product.fromJson(String source) =>
-  //     Product.fromSnapshot(json.decode(source));
-
   @override
   bool get stringify => true;
 
   static List<Product> products = [
     Product(
-      id: 1,
+      id: '1',
       name: 'Soft Drink #1',
       description:
           'Is very, very, very, good. A drink that you drink when you\'re looking to drink. A drink of drinks for drinks.',
@@ -130,7 +111,7 @@ class Product extends Equatable {
       isPopular: false,
     ),
     Product(
-      id: 2,
+      id: '2',
       name: 'Soft Drink #2',
       description: 'Is good.',
       category: 'Soft Drinks',
@@ -142,7 +123,7 @@ class Product extends Equatable {
       isPopular: true,
     ),
     Product(
-      id: 3,
+      id: '3',
       name: 'Soft Drink #3',
       description: 'Is good.',
       category: 'Soft Drinks',
@@ -154,7 +135,7 @@ class Product extends Equatable {
       isPopular: true,
     ),
     Product(
-      id: 4,
+      id: '4',
       name: 'Smoothies #1',
       description: 'Is good.',
       category: 'Smoothies',
@@ -166,7 +147,7 @@ class Product extends Equatable {
       isPopular: false,
     ),
     Product(
-      id: 5,
+      id: '5',
       name: 'Smoothies #2',
       description: 'Is good.',
       category: 'Smoothies',
@@ -178,7 +159,7 @@ class Product extends Equatable {
       isPopular: false,
     ),
     Product(
-      id: 6,
+      id: '6',
       name: 'Soft Drink #1',
       description: 'Is good.',
       category: 'Soft Drinks',
@@ -190,7 +171,7 @@ class Product extends Equatable {
       isPopular: false,
     ),
     Product(
-      id: 7,
+      id: '7',
       name: 'Soft Drink #2',
       description: 'Is good.',
       category: 'Soft Drinks',
@@ -201,7 +182,7 @@ class Product extends Equatable {
       isPopular: true,
     ),
     Product(
-      id: 8,
+      id: '8',
       name: 'Soft Drink #3',
       description: 'Is good.',
       category: 'Soft Drinks',
@@ -213,7 +194,7 @@ class Product extends Equatable {
       isPopular: true,
     ),
     Product(
-      id: 9,
+      id: '9',
       name: 'Smoothies #1',
       description: 'Is good.',
       category: 'Smoothies',
@@ -224,7 +205,7 @@ class Product extends Equatable {
       isPopular: false,
     ),
     Product(
-      id: 10,
+      id: '10',
       name: 'Smoothies #2',
       description: 'Is good.',
       category: 'Smoothies',
@@ -236,7 +217,7 @@ class Product extends Equatable {
       isPopular: false,
     ),
     Product(
-      id: 11,
+      id: '11',
       name: 'Soft Drink #1',
       description: 'Is good.',
       category: 'Soft Drinks',
@@ -248,7 +229,7 @@ class Product extends Equatable {
       isPopular: false,
     ),
     Product(
-      id: 12,
+      id: '12',
       name: 'Soft Drink #2',
       description: 'Is good.',
       category: 'Soft Drinks',
@@ -260,7 +241,7 @@ class Product extends Equatable {
       isPopular: true,
     ),
     Product(
-      id: 13,
+      id: '13',
       name: 'Soft Drink #3',
       description: 'Is good.',
       category: 'Soft Drinks',
@@ -272,7 +253,7 @@ class Product extends Equatable {
       isPopular: true,
     ),
     Product(
-      id: 14,
+      id: '14',
       name: 'Smoothies #2',
       description: 'Is good.',
       category: 'Smoothies',
